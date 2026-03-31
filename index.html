@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClawRise — AI Automation for Small Businesses</title>
+  <meta name="description" content="Custom AI automations for small businesses. Stop doing the same work every week. Starting at $500." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111;
+      --border: #222;
+      --text: #f0f0f0;
+      --muted: #888;
+      --accent: #6c63ff;
+      --accent2: #8b83ff;
+      --card: #141414;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav { border-bottom: 1px solid var(--border); padding: 18px 0; position: sticky; top: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(8px); z-index: 10; }
+    nav .inner { display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .logo { font-weight: 700; font-size: 1.1rem; color: var(--text); letter-spacing: -0.3px; }
+    .logo span { color: var(--accent); }
+    .nav-cta { background: var(--accent); color: #fff; padding: 8px 18px; border-radius: 6px; font-size: 0.875rem; font-weight: 600; }
+    .nav-cta:hover { background: var(--accent2); text-decoration: none; }
+
+    /* HERO */
+    .hero { padding: 100px 0 80px; text-align: center; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 20px; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { font-size: 1.2rem; color: var(--muted); max-width: 580px; margin: 0 auto 36px; }
+    .btn-primary { display: inline-block; background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 8px; font-size: 1rem; font-weight: 700; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--accent2); text-decoration: none; }
+    .hero-note { margin-top: 16px; font-size: 0.85rem; color: var(--muted); }
+
+    /* SECTION */
+    section { padding: 72px 0; border-top: 1px solid var(--border); }
+    .section-label { text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+    .section-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .section-sub { color: var(--muted); font-size: 1.05rem; max-width: 640px; margin-bottom: 40px; }
+
+    /* PAIN POINTS */
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .pain-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; font-size: 0.95rem; color: var(--muted); }
+    .pain-card::before { content: '"'; color: var(--accent); font-size: 1.4rem; line-height: 1; display: block; margin-bottom: 8px; }
+
+    /* HOW IT WORKS */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-num { flex-shrink: 0; width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.95rem; color: #fff; }
+    .step-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+    .step-content p { color: var(--muted); font-size: 0.95rem; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+    .faq-item { padding: 24px 0; border-bottom: 1px solid var(--border); }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
+    .faq-item p { color: var(--muted); font-size: 0.95rem; }
+
+    /* CTA BLOCK */
+    .cta-block { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 56px 40px; text-align: center; }
+    .cta-block h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 16px; }
+    .cta-block p { color: var(--muted); margin-bottom: 32px; font-size: 1rem; max-width: 520px; margin-left: auto; margin-right: auto; margin-bottom: 32px; }
+    .cta-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 32px; }
+    .cta-feat { background: var(--bg); border: 1px solid var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--muted); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; color: var(--muted); font-size: 0.875rem; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 64px 0 56px; }
+      .cta-block { padding: 36px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <span class="logo">Claw<span>Rise</span></span>
+    <a href="#audit" class="nav-cta">Book Free Audit →</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>Stop doing the same work<br /><span>every single week.</span></h1>
+    <p>Custom AI automations for small businesses. We eliminate your most repetitive tasks — permanently. Starting at $500.</p>
+    <a href="#audit" class="btn-primary">Book a Free 30-Min Audit →</a>
+    <p class="hero-note">No pitch. No strings. Just a map of what's automatable in your workflow.</p>
+  </div>
+
+  <section id="problem">
+    <div class="section-label">The Problem</div>
+    <div class="section-title">Sound familiar?</div>
+    <p class="section-sub">Small business owners spend 10–15 hours a week on tasks that should already be automatic. Here's what we hear most:</p>
+    <div class="pain-grid">
+      <div class="pain-card">I spend 10+ hours/week on tasks that should be automatic</div>
+      <div class="pain-card">I know AI exists but I don't know where to start</div>
+      <div class="pain-card">I tried tools and they don't fit my specific workflow</div>
+      <div class="pain-card">I don't have time to build this myself</div>
+    </div>
+  </section>
+
+  <section id="solution">
+    <div class="section-label">How It Works</div>
+    <div class="section-title">Done-for-you, in 3 steps</div>
+    <p class="section-sub">We handle everything — discovery, build, testing, refinement. You just use the automation.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Free 30-min audit</h3>
+          <p>We map your top 5 workflows and tell you exactly what's automatable — and how much time it saves. No pitch.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>We build it</h3>
+          <p>Typically 1–3 days, done-for-you. Lead intake → CRM sync, email triage, invoice generation, reporting, onboarding — if you do it more than once a week, it's a candidate.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>You own it</h3>
+          <p>No subscriptions. No per-use fees. Your automation, forever. We test and refine until it works — you don't pay until you're satisfied.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="section-label">FAQ</div>
+    <div class="section-title">Common questions</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h4>What kinds of tasks can be automated?</h4>
+        <p>Lead intake → CRM sync, customer email triage, invoice generation, weekly reporting, onboarding sequences, social scheduling. If you do it more than once a week, it's a candidate.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do I need technical skills?</h4>
+        <p>No. We handle everything — discovery, build, testing, refinement. You just use the automation when it's ready.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How long does it take?</h4>
+        <p>Audit is 30 minutes (free). Build is typically 1–3 days depending on complexity.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What if it doesn't work?</h4>
+        <p>We test and refine until it does. You don't pay until you're satisfied.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Is this a subscription?</h4>
+        <p>No. You pay once and own the automation. No ongoing fees. Starting at $500 per workflow.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="audit">
+    <div class="cta-block">
+      <h2>Book Your Free 30-Min Audit</h2>
+      <p>We'll map your top 5 repetitive workflows, identify what's automatable right now, and give you a time-savings estimate. No pitch, no strings.</p>
+      <div class="cta-features">
+        <span class="cta-feat">✓ Map your top 5 workflows</span>
+        <span class="cta-feat">✓ Identify automation opportunities</span>
+        <span class="cta-feat">✓ Time savings estimate</span>
+        <span class="cta-feat">✓ No pitch, no strings</span>
+      </div>
+      <a href="mailto:contact@clawrise.com" class="btn-primary">contact@clawrise.com →</a>
+      <p style="margin-top:16px; font-size:0.85rem; color:#666;">Booking link coming soon — email us directly to grab a slot.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>ClawRise — AI automation for small businesses &nbsp;·&nbsp; <a href="mailto:contact@clawrise.com">contact@clawrise.com</a></p>
+</footer>
+
+</body>
+</html>
